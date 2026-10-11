@@ -2,7 +2,7 @@
 <h3 align="center">Backend Architect | Automator | CS & Data Analytics @ IIT Patna</h3>
 
 <p align="center">
-  I'm a 17-year-old developer focused on scalable backend architecture, automated workflows, and complex data systems. I specialize in taking products from concept to functional, data-driven systems.
+  I'm a 18 year old developer focused on scalable backend architecture, automated workflows, and complex data systems. I specialize in taking products from concept to functional, data-driven systems.
 </p>
 
 <div align="center">
