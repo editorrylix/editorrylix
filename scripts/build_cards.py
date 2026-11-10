@@ -50,6 +50,7 @@ TILES = [
 # Featured repos, in display order. Stars, language and description come from
 # the JSON; the text here is used when a repo has no description on GitHub.
 FEATURED = {
+    "Pouchy": "Shake your mouse, park anything, drop it anywhere. A drop shelf for Windows 10 and 11.",
     "nexus-ai-lecture-studio": "Local-first lecture and meeting studio: on-device transcription, study guides, Anki decks.",
     "shorts-clipper-bot": "Discord-controlled bot that watches YouTube channels and archives new Shorts to Google Drive.",
     "InstaViewBot": "Pulls view and engagement metrics for Instagram Reels through an API.",
@@ -168,6 +169,11 @@ METRICS = {key: Metrics(file) for key, (_, file, _) in FACES.items()}
 
 def width(s, face, size, spacing=0.0):
     return METRICS[face].width(s, size, spacing)
+
+
+def printable(s, face):
+    """Drop characters the font can't draw (emoji, mostly) and tidy the spaces left behind."""
+    return " ".join("".join(ch for ch in s if ch == " " or ord(ch) in METRICS[face].cmap).split())
 
 
 def fit(s, face, size, max_w):
@@ -543,7 +549,7 @@ def repo(index, name, info, fallback, delay):
         c.add(c.text(x, cy + 5, lang["name"], "m", 15, INK) + c.lamp(x - 15, cy, lang.get("color") or AMBER, 4.5))
         x -= 24
     left = 36
-    desc = fit(info.get("description") or fallback, "r", 15.5, x - 24 - left)
+    desc = fit(printable(info.get("description") or "", "r") or fallback, "r", 15.5, x - 24 - left)
     c.add(c.text(left, 43, fit(name, "b", 21, x - 24 - left), "b", 21, INK) + c.text(left, 69, desc, "r", 15.5, INK_SOFT))
     return c
 
